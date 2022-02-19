@@ -3,10 +3,11 @@ const { User } = require('../models');
 const { statusCode } = require('../utils/statusCode');
 const { errorMessages } = require('../utils/errorMessages');
 
+const secret = 'superSecretPassword';
+
 const createUser = async (info) => {
   const { email } = info;
   const getEmail = await User.findOne({ where: { email } });
-  const secret = 'superSecretPassword';
   if (getEmail) return { status: statusCode.CONFLICT, message: errorMessages.conflictEmail };
   await User.create(info);
   const jwtConfig = {
@@ -18,6 +19,20 @@ const createUser = async (info) => {
   return { status: statusCode.CREATED, token };
 };
 
+const login = async (info) => {
+  const { email } = info;
+  const getEmail = await User.findOne({ where: { email } });
+  if (!getEmail) return { status: statusCode.BAD_REQUEST, message: errorMessages.badRequestData };
+  const jwtConfig = {
+    expiresIn: '7d',
+    algorithm: 'HS256',
+  };
+  const payload = { email };
+  const token = jwt.sign(payload, secret, jwtConfig);
+  return { status: statusCode.OK, token };
+};
+
 module.exports = {
   createUser,
+  login,
 };

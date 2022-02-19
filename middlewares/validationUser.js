@@ -16,7 +16,7 @@ const verifyDisplayName = (req, res, next) => {
 
 const verifyEmail = (req, res, next) => {
   const { email } = req.body;
-  if (!email) { 
+  if (typeof email === 'undefined') { 
     return res.status(statusCode.BAD_REQUEST).json({ message: errorMessages.badRequestNullEmail });
   }
   if (email === '') {
@@ -33,7 +33,7 @@ const verifyEmail = (req, res, next) => {
 
 const verifyPassword = (req, res, next) => {
   const { password } = req.body;
-  if (!password) {
+  if (typeof password === 'undefined') {
     return res.status(statusCode.BAD_REQUEST).json({ 
       message: errorMessages.badRequestNullPassword });
   }
