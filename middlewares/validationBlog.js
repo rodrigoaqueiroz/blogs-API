@@ -24,9 +24,9 @@ const verifyCategories = async (req, res, next) => {
       message: errorMessages.badRequestNullCategoryIDs, 
     });
   }
-  const getId = await Category.findOne({ where: { id: categoryIds[0] } });
+  const getId = await Category.findOne({ where: { id: categoryIds } });
+  console.log(`SEGUE AS CATEGORIAS: ${categoryIds}`); 
   if (!getId) {
-    console.log(`ERRO EM VER A CATEGORIA INEXISTENTE, TESTE DA CATEGORYID: ${categoryIds}`);
     return res.status(statusCode.BAD_REQUEST).json({ 
       message: errorMessages.badRequestInvalidCategoryIDs, 
     });
