@@ -8,8 +8,8 @@ const createCategory = async (name) => {
 };
 
 const getAll = async () => {
-  const caregories = await Category.findAll();
-  return { status: statusCode.OK, info: caregories };
+  const categories = await Category.findAll();
+  return { status: statusCode.OK, info: categories };
 };
 
 module.exports = {
