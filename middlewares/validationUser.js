@@ -1,12 +1,7 @@
-// const Joi = require('joi');
 const jwt = require('jsonwebtoken');
 const { errorMessages } = require('../utils/errorMessages');
 const { statusCode } = require('../utils/statusCode');
 const { secret } = require('../services/userService');
-require('dotenv').config();
-
-// const schema = Joi.string().not().empty().email()
-// .required();
 
 const verifyDisplayName = (req, res, next) => {
   const { displayName } = req.body;
