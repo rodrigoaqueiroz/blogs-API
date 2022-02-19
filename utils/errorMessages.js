@@ -7,6 +7,7 @@ const errorMessages = {
   badRequestEmptyPassword: '"password" is not allowed to be empty',
   badRequestInvalidPassword: '"password" length must be 6 characters long',
   badRequestNullPassword: '"password" is required',
+  badRequestNullName: '"name" is required',
   badRequestNullTitle: '"title" is required',
   badRequestNullContent: '"content" is required',
   badRequestNullCategotyID: '"categoryid" is required',
