@@ -14,13 +14,21 @@ const login = async (req, res, _next) => {
   return res.status(status).json({ token });
 };
 
-const get = async (_req, res, _next) => {
-  const { status, info } = await Users.get();
+const getAll = async (_req, res, _next) => {
+  const { status, info } = await Users.getAll();
+  return res.status(status).json(info);
+};
+
+const getById = async (req, res) => {
+  const { id } = req.params;
+  const { status, message, info } = await Users.getById(id);
+  if (message) return res.status(status).json({ message });
   return res.status(status).json(info);
 };
 
 module.exports = {
   createUser,
   login,
-  get,
+  getAll,
+  getById,
 };

@@ -57,8 +57,6 @@ const verifyPassword = (req, res, next) => {
 
 const verifyToken = (req, res, next) => {
   const { authorization } = req.headers;
-  console.log(`ESTOU CHECKANDO A SENHA: ${secret}`);
-  console.log(`ESTOU CHECKANDO O TOKEN NO VALIDATION: ${authorization}`);
   if (!authorization) {
     return res.status(statusCode.UNAUTHORIZED).json({
       message: errorMessages.unauthorizedEmptyToken,
@@ -66,7 +64,6 @@ const verifyToken = (req, res, next) => {
   }
   try {
     const user = jwt.verify(authorization, secret);
-    console.log(`CHECKANDO O USER: ${user}`);
     req.user = user;
     next();
   } catch (err) {

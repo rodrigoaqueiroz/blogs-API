@@ -14,5 +14,6 @@ app.get('/', (request, response) => {
 app.post('/user', router);
 app.post('/login', router);
 app.get('/user', router);
+app.get('/user/:id', router);
 
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}!`));

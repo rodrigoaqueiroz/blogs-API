@@ -8,6 +8,7 @@ const router = express.Router();
 
 router.post('/user', [verifyDisplayName, verifyEmail, verifyPassword, Users.createUser]);
 router.post('/login', [verifyEmail, verifyPassword, Users.login]);
-router.get('/user', [verifyToken, Users.get]);
+router.get('/user', [verifyToken, Users.getAll]);
+router.get('/user/:id', [verifyToken, Users.getById]);
 
 module.exports = router;

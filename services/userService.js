@@ -32,14 +32,25 @@ const login = async (info) => {
   return { status: statusCode.OK, token };
 };
 
-const get = async () => {
+const getAll = async () => {
   const users = await User.findAll();
   return { status: statusCode.OK, info: users };
 };
 
+const getById = async (id) => {
+  const users = await User.findByPk(id);
+  if (!users) {
+    return { status: statusCode.NOT_FOUND, message: errorMessages.notFoundUser };
+  }
+  return { status: statusCode.OK, info: users };
+};
+
+// referência: https://sequelize.org/v7/manual/model-querying-finders.html
+
 module.exports = {
+  secret,
   createUser,
   login,
-  get,
-  secret,
+  getAll,
+  getById,
 };
