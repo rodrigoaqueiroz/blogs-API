@@ -1,12 +1,9 @@
-const Categories = (sequelize, DataTypes) => {
-  const Category = sequelize.define('Categories', {
+const Category = (sequelize, DataTypes) => {
+  const category = sequelize.define('Category', {
     name: DataTypes.STRING,
-  }, 
-  { 
-    timestamps: false, 
-  });
+  }, { timestamps: false });
 
-  return Category;
+  return category;
 };
 
-module.exports = Categories;
+module.exports = Category;

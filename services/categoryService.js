@@ -1,12 +1,18 @@
-const { Categories } = require('../models/categoryModel');
+const { Category } = require('../models');
 const { statusCode } = require('../utils/statusCode');
-// const { errorMessages } = require('../utils/errorMessages');
 
 const createCategory = async (name) => {
-  const postCategory = await Categories.create({ name });
+  console.log(`estou no service testando o name: ${name}`);
+  const postCategory = await Category.create({ name });
   return { status: statusCode.CREATED, info: postCategory };
+};
+
+const getAll = async () => {
+  const caregories = await Category.findAll();
+  return { status: statusCode.OK, info: caregories };
 };
 
 module.exports = {
   createCategory,
+  getAll,
 };
