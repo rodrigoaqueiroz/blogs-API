@@ -32,7 +32,14 @@ const login = async (info) => {
   return { status: statusCode.OK, token };
 };
 
+const get = async () => {
+  const users = await User.findAll();
+  return { status: statusCode.OK, info: users };
+};
+
 module.exports = {
   createUser,
   login,
+  get,
+  secret,
 };
