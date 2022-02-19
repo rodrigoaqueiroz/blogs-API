@@ -17,6 +17,12 @@ app.get('/user', router);
 app.get('/user/:id', router);
 app.post('/categories', router);
 app.get('/categories', router);
+app.post('/post', router);
+// app.get('/post', router
+// app.get('/post/:id', router);
+// app.put('/post/:id', router);
+// app.delete('/post/:id', router);
+// app.delete('/user/me', router);
 
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}!`));
 
