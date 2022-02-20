@@ -39,9 +39,31 @@ const getPostById = async (id) => {
   if (!getById) return { status: statusCode.NOT_FOUND, message: errorMessages.notFoundPost };
   return { status: statusCode.OK, info: getById };
 };
+const putPost = async (info, id, email) => {
+  const { userId, published } = await BlogPosts.findByPk(id);
+  const getUser = await User.findOne({ where: { email } });
+  if (getUser.id !== userId) {
+    return { status: statusCode.UNAUTHORIZED, message: errorMessages.unauthorizedUser };
+  }
+  const { title, content, categoryIds } = info;
+  if (categoryIds) {
+    return { status: statusCode.BAD_REQUEST, message: errorMessages.badRequestPutCategory };
+  }
+  // Limite de 20 linhas por função
+  await BlogPosts.update(
+  { title, content, userId, published, updated: new Date() }, { where: { id } },
+  );
+  // referência: https://medium.com/@sarahdherr/sequelizes-update-method-example-included-39dfed6821d
+  const getUpdated = await BlogPosts.findByPk(id, {
+    include: [
+      { model: Category, as: 'categories', through: { attributes: [] } }],
+  });
+  return { status: statusCode.OK, getUpdated };
+};
 
 module.exports = {
   createPost,
   getPost,
   getPostById,
+  putPost,
 };

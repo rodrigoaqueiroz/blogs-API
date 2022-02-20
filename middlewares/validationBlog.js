@@ -25,7 +25,6 @@ const verifyCategories = async (req, res, next) => {
     });
   }
   const getId = await Category.findOne({ where: { id: categoryIds } });
-  console.log(`SEGUE AS CATEGORIAS: ${categoryIds}`); 
   if (!getId) {
     return res.status(statusCode.BAD_REQUEST).json({ 
       message: errorMessages.badRequestInvalidCategoryIDs, 

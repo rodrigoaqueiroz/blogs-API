@@ -12,9 +12,11 @@ const errorMessages = {
   badRequestNullContent: '"content" is required',
   badRequestNullCategoryIDs: '"categoryIds" is required',
   badRequestInvalidCategoryIDs: '"categoryIds" not found',
+  badRequestPutCategory: 'Categories cannot be edited',
   conflictEmail: 'User already registered',
   unauthorizedEmptyToken: 'Token not found',
   unauthorizedInvalidToken: 'Expired or invalid token',
+  unauthorizedUser: 'Unauthorized user',
   notFoundUser: 'User does not exist',
   notFoundPost: 'Post does not exist',
 };
