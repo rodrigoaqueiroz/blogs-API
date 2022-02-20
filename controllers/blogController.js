@@ -28,9 +28,18 @@ const putPost = async (req, res) => {
   return res.status(status).json(getUpdated);
 };
 
+const deletePost = async (req, res) => {
+  const { id } = req.params;
+  const { email } = req.user;
+  const { message, status } = await Blog.delPost(id, email);
+  if (message) return res.status(status).json({ message });
+  return res.status(status).send();
+};
+
 module.exports = {
   createPost,
   getPosts,
   getById,
   putPost,
+  deletePost,
 };

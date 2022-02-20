@@ -20,7 +20,7 @@ router.post('/post', [verifyToken, verifyTitle, verifyCategories, BlogPost.creat
 router.get('/post', [verifyToken, BlogPost.getPosts]);
 router.get('/post/:id', [verifyToken, BlogPost.getById]);
 router.put('/post/:id', [verifyToken, verifyTitle, BlogPost.putPost]);
-// router.delete('/post/:id', ...);
+router.delete('/post/:id', [verifyToken, BlogPost.deletePost]);
 // router.delete('/user/me', ...);
 
 module.exports = router;

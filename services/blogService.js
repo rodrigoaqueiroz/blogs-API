@@ -61,9 +61,23 @@ const putPost = async (info, id, email) => {
   return { status: statusCode.OK, getUpdated };
 };
 
+const delPost = async (id, email) => {
+  const getById = await BlogPosts.findByPk(id);
+  if (!getById) {
+    return { status: statusCode.NOT_FOUND, message: errorMessages.notFoundPost };
+  }
+  const user = await User.findOne({ where: { email } });
+  if (user.id !== getById.userId) {
+    return { status: statusCode.UNAUTHORIZED, message: errorMessages.unauthorizedUser };
+  }
+  await BlogPosts.destroy({ where: { id } });
+  return { status: statusCode.NO_CONTENT };
+};
+
 module.exports = {
   createPost,
   getPost,
   getPostById,
   putPost,
+  delPost,
 };
