@@ -1,5 +1,6 @@
 const { BlogPosts, User, Category } = require('../models');
 const { statusCode } = require('../utils/statusCode');
+const { errorMessages } = require('../utils/errorMessages');
 
 const createPost = async (post, email) => {
   const { id } = await User.findOne({ where: { email } });
@@ -28,7 +29,19 @@ const getPost = async () => {
 
 // referência: Revisão do Matheus Gaspar, aos 1:08:29 - me lembrar - é importante para transact!
 
+const getPostById = async (id) => {
+  const getById = await BlogPosts.findByPk(id, {
+    include: [
+      { model: User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Category, as: 'categories', through: { attributes: [] } },
+    ],
+  });
+  if (!getById) return { status: statusCode.NOT_FOUND, message: errorMessages.notFoundPost };
+  return { status: statusCode.OK, info: getById };
+};
+
 module.exports = {
   createPost,
   getPost,
+  getPostById,
 };

@@ -19,7 +19,7 @@ app.post('/categories', router);
 app.get('/categories', router);
 app.post('/post', router);
 app.get('/post', router);
-// app.get('/post/:id', router);
+app.get('/post/:id', router);
 // app.put('/post/:id', router);
 // app.delete('/post/:id', router);
 // app.delete('/user/me', router);

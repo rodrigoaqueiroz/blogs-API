@@ -18,7 +18,7 @@ router.post('/categories', [verifyToken, Category.createCategory]);
 router.get('/categories', [verifyToken, Category.getCategories]);
 router.post('/post', [verifyToken, verifyTitle, verifyCategories, BlogPost.createPost]);
 router.get('/post', [verifyToken, BlogPost.getPosts]);
-// router.get('/post/:id', ...);
+router.get('/post/:id', [verifyToken, BlogPost.getById]);
 // router.put('/post/:id', ...);
 // router.delete('/post/:id', ...);
 // router.delete('/user/me', ...);
