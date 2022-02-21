@@ -21,6 +21,6 @@ router.get('/post', [verifyToken, BlogPost.getPosts]);
 router.get('/post/:id', [verifyToken, BlogPost.getById]);
 router.put('/post/:id', [verifyToken, verifyTitle, BlogPost.putPost]);
 router.delete('/post/:id', [verifyToken, BlogPost.deletePost]);
-// router.delete('/user/me', ...);
+router.delete('/user/me', [verifyToken, Users.deleteMe]);
 
 module.exports = router;

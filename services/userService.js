@@ -47,10 +47,16 @@ const getById = async (id) => {
 
 // referência: https://sequelize.org/v7/manual/model-querying-finders.html
 
+const delMe = async (email) => {
+  await User.destroy({ where: { email } });
+  return { status: statusCode.NO_CONTENT };
+};
+
 module.exports = {
   secret,
   createUser,
   login,
   getAll,
   getById,
+  delMe,
 };
